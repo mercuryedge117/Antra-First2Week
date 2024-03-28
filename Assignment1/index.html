@@ -22,17 +22,10 @@
 
             .dualFields {
                 display: flex;
-                align-items: stretch;
                 justify-content: space-between;
+                align-items: center;
             }
 
-            .textFieldsContainer {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                width: 100%;
-                margin-bottom: 6px;
-            }
 
             input[type="text"],input[type="password"] {
                 font-size: 120%;
@@ -40,6 +33,8 @@
                 padding: 10px;
                 border: 1px solid #dcdcdc;
                 border-radius: 6px;
+                width: 95%; /* why????? */
+                margin-bottom: 6px;
             }
 
             input[type="password"]:focus, input[type="text"]:focus {
@@ -48,7 +43,7 @@
                 transition: 0.2s;
             }
 
-            .fakebutton {
+            #fakebutton {
                 font-weight: 700;
                 font-size: 70%;
                 margin: 1px;
@@ -57,7 +52,7 @@
                 background-color: #428bca;
                 color: White;
             }
-
+            
             .formButton {
                 color: white;
                 border: none;
@@ -65,6 +60,7 @@
                 font-size: 120%;
                 padding: 12px;
                 margin: 0px 20px;
+                margin-bottom: 10px;
                 border-radius: 6px;
                 cursor: pointer;
             }
@@ -77,21 +73,21 @@
                 background-color: #5cb85c;
             }
 
-            .agreementContainer {
-                display: flex;
-                align-items: center;
-                justify-content: space-around;
-                font-size: 90%;
-            }
-
             #agreement {
                 width: 70%;
+                font-size: 90%;
                 line-height: 1.4;
             }
 
             #agree_label {
                 font-weight: 700;
             }
+
+            @media (max-width: 600px) {
+            .dualFields {
+                flex-direction: column;
+            }
+        }
             
         </style>
     </head>
@@ -123,14 +119,14 @@
                     </div>
                 </div>
         
-                <div class="agreementContainer">
+                <div class="dualFields">
                     <div>
                         <input type="checkbox" id="agree_box" name="term_agree">
                         <label id="agree_label" for="agree_box">I Agree</label>
                     </div>
     
                     <div id="agreement">
-                        By clicking <span class="fakebutton">Register</span>, you agree to the <a href="#">Terms and Conditions</a> 
+                        By clicking <span id="fakebutton">Register</span>, you agree to the <a href="#">Terms and Conditions</a> 
                         set out by this site, including our Cookie Use.
                     </div>
                 </div>
