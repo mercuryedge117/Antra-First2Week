@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Sign Up Page</title>
+        <style>
+            .mainContainer {
+                font-family: Arial, sans-serif;
+                padding: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                max-width: 600px;
+                margin: auto;
+            }
+
+            .headerContainer {
+                font-size: 200%;
+                margin-bottom: 10px;
+            }
+
+            .dualFields {
+                display: flex;
+                align-items: stretch;
+                justify-content: space-between;
+            }
+
+            .textFieldsContainer {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 100%;
+                margin-bottom: 6px;
+            }
+
+            input[type="text"],input[type="password"] {
+                font-size: 120%;
+                margin: 5px;
+                padding: 10px;
+                border: 1px solid #dcdcdc;
+                border-radius: 6px;
+            }
+
+            input[type="password"]:focus, input[type="text"]:focus {
+                box-shadow: 0px 0px 10px 1px #9fcdf4;
+                outline: 1px solid #a0cdf1;
+                transition: 0.2s;
+            }
+
+            .fakebutton {
+                font-weight: 700;
+                font-size: 70%;
+                margin: 1px;
+                padding: 3px 6px;
+                border-radius: 4px;
+                background-color: #428bca;
+                color: White;
+            }
+
+            .formButton {
+                color: white;
+                border: none;
+                width: 100%;
+                font-size: 120%;
+                padding: 12px;
+                margin: 0px 20px;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+
+            #register.formButton {
+                background-color: #428bca;
+            }
+
+            #signin.formButton {
+                background-color: #5cb85c;
+            }
+
+            .agreementContainer {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                font-size: 90%;
+            }
+
+            #agreement {
+                width: 70%;
+                line-height: 1.4;
+            }
+
+            #agree_label {
+                font-weight: 700;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+        <div class="mainContainer">
+            <header class="headerContainer">Sign Up</header>
+                
+            <form class="inputContainer">
+                <div class="textFieldsContainer">
+                    <div class="dualFields">
+                        <input type="text" name="first_name" placeholder="First Name">
+                        <input type="text" name="last_name" placeholder="Last Name">
+                    </div>
+                </div>
+
+                <div class="textFieldsContainer">
+                    <input type="text" name="mobile_num" placeholder="Mobile No.">
+                </div>
+        
+                <div class="textFieldsContainer">
+                    <input type="text" name="email_address" placeholder="Email Address">
+                </div>
+        
+                <div class="textFieldsContainer">
+                    <div class="dualFields">
+                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password_confirm" placeholder="Confirm Password">
+                    </div>
+                </div>
+        
+                <div class="agreementContainer">
+                    <div>
+                        <input type="checkbox" id="agree_box" name="term_agree">
+                        <label id="agree_label" for="agree_box">I Agree</label>
+                    </div>
+    
+                    <div id="agreement">
+                        By clicking <span class="fakebutton">Register</span>, you agree to the <a href="#">Terms and Conditions</a> 
+                        set out by this site, including our Cookie Use.
+                    </div>
+                </div>
+
+                <div class="dualFields">
+                    <input type="submit" id="register" class="formButton" value="Register">
+                    <button id="signin" class="formButton">Sign In</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
