@@ -26,6 +26,12 @@
                 align-items: center;
             }
 
+            .textFieldsContainer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
 
             input[type="text"],input[type="password"] {
                 font-size: 120%;
@@ -33,7 +39,7 @@
                 padding: 10px;
                 border: 1px solid #dcdcdc;
                 border-radius: 6px;
-                width: 95%; /* why????? */
+                width: 100%;
                 margin-bottom: 6px;
             }
 
@@ -98,10 +104,8 @@
                 
             <form class="inputContainer">
                 <div class="textFieldsContainer">
-                    <div class="dualFields">
                         <input type="text" name="first_name" placeholder="First Name">
                         <input type="text" name="last_name" placeholder="Last Name">
-                    </div>
                 </div>
 
                 <div class="textFieldsContainer">
@@ -113,10 +117,8 @@
                 </div>
         
                 <div class="textFieldsContainer">
-                    <div class="dualFields">
                         <input type="password" name="password" placeholder="Password">
                         <input type="password" name="password_confirm" placeholder="Confirm Password">
-                    </div>
                 </div>
         
                 <div class="dualFields">
