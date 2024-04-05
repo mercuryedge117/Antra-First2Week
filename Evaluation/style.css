@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: small;
+}
+
+h4 {
+    text-align: center;
+}
+
+li:nth-child(odd) {
+    background-color: #FFF;
+}
+
+li:nth-child(even) {
+    background-color: rgb(221, 239, 221);
+}
+
+.highlight {
+    background-color: deepskyblue !important;
+}
+
+.credits_holder {
+    font-size: medium;
+}
+
+.courses_container {
+    padding-inline-start: 0;
+    margin: 0;
+    overflow-y: auto;
+}
+
+.mid_body {
+    display: flex;
+    padding: 0 50px 50px 50px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.courses_holder {
+    height: 300px;
+    width: 200px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    margin: 0 50px 0 50px;
+}
+
+.course {
+    text-align: center;
+    list-style-type: none;
+    border: 1px solid black;
+}
