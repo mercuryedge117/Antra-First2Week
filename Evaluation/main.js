@@ -9,9 +9,8 @@ const Api = (() => {
 
 const View = (() => {
     const domStr = {
-        container: ".courses_container",
-        avaliableCourse: ".avaliable_course",
-        selectedCourse: ".selected_course",
+        avaliableCContainer: ".avaliable_course",
+        selectedCContainer: ".selected_course",
         courseTag: ".course",
         counter: ".credit_counter",
         addBtn: ".add_course",
@@ -41,28 +40,7 @@ const View = (() => {
 })();
 
 const Model = ((view, api) => {
-    // const demo = [
-    //     {
-    //         "courseId": 1,
-    //         "courseName": "Calculus",
-    //         "required": true,
-    //         "credit": 3
-    //       },
-    //       {
-    //         "courseId": 2,
-    //         "courseName": "Data Structures",
-    //         "required": true,
-    //         "credit": 3
-    //       },
-    //       {
-    //         "courseId": 4,
-    //         "courseName": "Cyber Security",
-    //         "required": false,
-    //         "credit": 3
-    //       },
-    // ];
     const { getData } = api;
-
     const { domStr, creatTmp, render } = view;
 
     class State {
@@ -86,22 +64,22 @@ const Model = ((view, api) => {
         }
         set newCourseList(arr) {
             this._courseList = arr;
-            const courseContainer = document.querySelector(domStr.avaliableCourse);
+            const courseContainer = document.querySelector(domStr.avaliableCContainer);
             const tmp = creatTmp(this._courseList);
             render(courseContainer, tmp);
         }
 
         get selectedCourseList() {
             return this._selectedCourseList;
-        }        
+        }
         set selectedCourseList(arr) {
             this._selectedCourseList = arr;
         }
 
-        get tCredit() {
+        get totalCredit() {
             return this._totalCredit;
         }
-        set newtCredit(num) {
+        set newTotalCredit(num) {
             this._totalCredit = num;
             const container = document.querySelector(domStr.counter);
             const tmp = `${this._totalCredit}`;
@@ -109,21 +87,19 @@ const Model = ((view, api) => {
         }
 
         addCourses() {
-            const selectedContainer = document.querySelector(domStr.selectedCourse);
+            const selectedContainer = document.querySelector(domStr.selectedCContainer);
             const tmp = creatTmp(this._selectedCourseList);
             render(selectedContainer, tmp);
         }
     }
 
     return {
-        // demo,
         getData,
         State,
     };
 })(View, Api);
 
 const Controller = ((view, model) => {
-    // const { demo,  State } = model;
     const { getData, State } = model;
     const { domStr } = view;
 
@@ -131,24 +107,23 @@ const Controller = ((view, model) => {
     const init = () => {
         getData.then((data) => {
             state.newCourseList = data;
-            onClickCourses();
+            onClickCourse();
         });
-        // state.newCourseList = demo;
     };
 
-    const onClickCourses = () => {
-        const courses = document.querySelectorAll(domStr.courseTag);
-        courses.forEach((course) => {
+    const onClickCourse = () => {
+        const courseUnits = document.querySelectorAll(domStr.courseTag);
+        courseUnits.forEach((course) => {
             course.addEventListener('click', (event) => {
                 const id = event.target.parentElement.dataset.id;
                 if (id !== undefined) {
                     const courseList = state.courseList;
                     let idList = state.selectedIdList;
                     let selected = state.selectedCourseList;
-                    let totalCount = state.tCredit;
+                    let totalCount = state.totalCredit;
 
-                    const currCourse = courseList.find((course) => {
-                        const {courseId} = course; 
+                    const currCourse = courseList.find((ele) => {
+                        const { courseId } = ele;
                         return id === courseId.toString();
                     });
 
@@ -173,31 +148,31 @@ const Controller = ((view, model) => {
                         course.classList.toggle('highlight');
                     }
 
-                    selected = courseList.filter((course) => {
-                        const {courseId} = course; 
+                    selected = courseList.filter((ele) => {
+                        const { courseId } = ele;
                         return idList.includes(courseId.toString());
                     });
 
                     state.selectedCourseList = selected;
                     state.selectedIdList = idList;
-                    state.newtCredit = totalCount;
+                    state.newTotalCredit = totalCount;
                 }
             })
         })
     }
 
-    const addCourseButton = () => {
+    const addCourseBtn = () => {
         const btn = document.querySelector(domStr.addBtn);
         btn.addEventListener("click", () => {
-            if (window.confirm("You have chosen " + state.tCredit + " credits for this semester. You cannot change once you submit. Do you want to confirm?")) {
+            if (window.confirm("You have chosen " + state.totalCredit + " credits for this semester. You cannot change once you submit. Do you want to confirm?")) {
                 state.addCourses();
                 let courseList = state.courseList;
                 courseList = courseList.filter((course) => {
-                    const {courseId} = course; 
+                    const { courseId } = course;
                     return !state.selectedIdList.includes(courseId.toString());
                 })
                 state.newCourseList = courseList;
-                onClickCourses();
+                onClickCourse();
                 btn.disabled = true;
             }
         });
@@ -205,7 +180,7 @@ const Controller = ((view, model) => {
 
     const bootstrap = () => {
         init();
-        addCourseButton();
+        addCourseBtn();
     }
 
     return {
