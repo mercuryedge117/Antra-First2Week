@@ -189,7 +189,6 @@ const Controller = ((view, model) => {
     const addCourseButton = () => {
         const btn = document.querySelector(domStr.addBtn);
         btn.addEventListener("click", () => {
-            // TODO: ALERT
             if (window.confirm("You have chosen " + state.tCredit + " credits for this semester. You cannot change once you submit. Do you want to confirm?")) {
                 state.addCourses();
                 let courseList = state.courseList;
@@ -199,6 +198,7 @@ const Controller = ((view, model) => {
                 })
                 state.newCourseList = courseList;
                 onClickCourses();
+                btn.disabled = true;
             }
         });
     };
